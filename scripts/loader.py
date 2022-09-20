@@ -13,4 +13,16 @@ class DataLoader():
         columns=lines[0].replace('\n','').split(';')
         data=lines[1:]
         return columns,data
+    
+    def chunk_list(list,chunk_size,default_first_val=None):
+        chunked_list=[]
+        for i in range(0, len(list), chunk_size):
+            if default_first_val:
+                values=[default_first_val]
+                values.extend(list[i:i+chunk_size])
+                chunked_list.append(values)
+            else:
+                chunked_list.append(list[i:i+chunk_size])
+
+        return chunked_list
 
