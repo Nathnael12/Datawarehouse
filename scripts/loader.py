@@ -65,9 +65,9 @@ class DataLoader():
         except Exception as e:
             self.logger.error(f"Failed to prepare data frame: {e}")
 
-    def extract_data(self,file_path:str)->pd.DataFrame:
+    def extract_data(self,file_name:str)->pd.DataFrame:
         try:
-            columns,all_data=self.get_columns_and_rows(file_path=file_path)
+            columns,all_data=self.get_columns_and_rows(file_path=file_name)
             trajectory_data, timed_vehicle_data=self.prepare_data_for_pandas(columns=columns,all_data=all_data)
             return self.prepare_data_frame(trajectory_data,timed_vehicle_data)
         except Exception as e:
