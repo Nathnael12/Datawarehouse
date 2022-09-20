@@ -1,7 +1,7 @@
 import pandas as pd
 from logger import Logger
 import sys
-class DataLoader():
+class DataExtractor():
     
     def __init__(self)->None:
         self.logger=Logger().get_app_logger()
@@ -31,7 +31,7 @@ class DataLoader():
 
         return chunked_list
 
-    def prepare_data_for_pandas(self,columns,all_data)->tuple:
+    def prepare_data_for_pandas(self,columns,all_data,id_prefix)->tuple:
         try:
             trajectory_cols=columns[:4]
             trajectory_rows=[]
@@ -42,6 +42,7 @@ class DataLoader():
             for row in all_data:
                 try:
                     items=row.replace('\n','').split(';')
+                    items[0]=f"{id_prefix}_{items[0]}"
                     trajectory_rows.append(items[:4])
                     timed_vehicle_rows.extend(self.chunk_list(items[4:],6,items[0]))
                 except Exception as e:
@@ -67,8 +68,10 @@ class DataLoader():
 
     def extract_data(self,file_name:str)->pd.DataFrame:
         try:
+            # set the day and time as unique identifier
+            id_prefix= file_name.split('.')[0]
             columns,all_data=self.get_columns_and_rows(file_path=file_name)
-            trajectory_data, timed_vehicle_data=self.prepare_data_for_pandas(columns=columns,all_data=all_data)
+            trajectory_data, timed_vehicle_data=self.prepare_data_for_pandas(columns=columns,all_data=all_data,id_prefix=id_prefix)
             return self.prepare_data_frame(trajectory_data,timed_vehicle_data)
         except Exception as e:
             self.logger.error(f"Failed to extract data: {e}")
