@@ -33,19 +33,19 @@ with DAG(
     start_date=datetime(2022,9,21,3),
     schedule_interval='@daily'
 ) as dag:
-    task1 = PythonOperator(
+    read_data = PythonOperator(
         task_id='extract_from_file',
         python_callable = extract_data,
     ) 
     
-    task2 = PythonOperator(
+    create_tables = PythonOperator(
         task_id='create_table',
         python_callable = create_table
     )
     
-    task3 = PythonOperator(
+    populate_db = PythonOperator(
         task_id='load_data',
         python_callable = populate_table
     ) 
 
-    task1.set_downstream(task2)
+    [read_data,create_tables]>>populate_db
