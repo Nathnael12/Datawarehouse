@@ -1,6 +1,7 @@
 import pandas as pd
 from logger import Logger
 import sys
+from datetime import datetime
 class DataExtractor():
     
     def __init__(self)->None:
@@ -85,14 +86,26 @@ class DataExtractor():
             except:
                 pass
 
-    def extract_data(self,file_name:str)->pd.DataFrame:
+    def extract_data(self,file_name:str,return_json=False)->pd.DataFrame:
         try:
             # set the day and time as unique identifier
             id_prefix= file_name.split('.')[0]
             columns,all_data=self.get_columns_and_rows(file_path=file_name)
             trajectory_data, timed_vehicle_data=self.prepare_data_for_pandas(columns=columns,all_data=all_data,id_prefix=id_prefix)
-            return self.prepare_data_frame(trajectory_data,timed_vehicle_data)
+            if not return_json:
+                return self.prepare_data_frame(trajectory_data,timed_vehicle_data)
+            
+            tr,vh= self.prepare_data_frame(trajectory_data,timed_vehicle_data)
+            
+            tr_file_name= str(datetime.today()).replace(' ','_')+"trajectory.json"
+            vh_file_name= str(datetime.today()).replace(' ','_')+"vehicle_data.json"
+
+            tr.to_json(f'../temp_storage/{tr_file_name}',orient='records')
+            vh.to_json(f'../temp_storage/{vh_file_name}',orient='records')
+
+            return tr_file_name,vh_file_name
         except Exception as e:
+            print(e)
             try:
                 self.logger.error(f"Failed to extract data: {e}")
             except:
