@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS vehicles
     PRIMARY KEY ("id"),
     CONSTRAINT fk_trajectory
         FOREIGN KEY("track_id") 
-            REFERENCES trajectories(u_id)
+            REFERENCES trajectories(track_id)
             ON DELETE CASCADE
     
 );

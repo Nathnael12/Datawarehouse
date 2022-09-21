@@ -35,7 +35,7 @@ def insert_to_table(json_stream :str, table_name: str,from_file=False ):
             dt=data[0]
 
             df=pd.DataFrame.from_dict(json.loads(dt))
-            
+            df.columns=df.columns.str.replace(' ','')
         with engine.connect() as conn:
             df.to_sql(name=table_name, con=conn, if_exists='append', index=False)
 
