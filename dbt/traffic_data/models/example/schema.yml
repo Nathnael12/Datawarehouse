@@ -2,13 +2,23 @@
 version: 2
 
 models:
-  - name: ten_vehicles
-    description: "A starter dbt model"
-    # columns:
-    #   - name: id
-    #     description: "The primary key for this table"
-    #     tests:
-    #       - unique
-    #       - not_null
+  - name: fast_vehicles
+    description: "Query fast vehicles"
+    
+  - name: vehicles_summary
+    description: "A summary of vehicles by distance and speed"
 
+
+
+
+
+
+  # - name: reverse_geocoding
   
+  #   # Document within the same codebase
+  #   description: My transformation written in Python
+    
+  #   # Configure in ways that feel intuitive and familiar
+  #   config:
+  #     materialized: view
+  #     tags: ['python']  

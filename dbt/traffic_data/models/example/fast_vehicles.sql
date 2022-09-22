@@ -9,13 +9,15 @@
 
 {{ config(materialized='view') }}
 
-with source_data as (
-
-    select * from vehicles limit 10
+with fast_vehicles as (
+    SELECT *
+    from trajectories 
+    ORDER BY avg_speed DESC
+    LIMIT 100
 )
 
-select *
-from source_data
+
+SELECT * FROM fast_vehicles
 
 /*
     Uncomment the line below to remove records with null `id` values
