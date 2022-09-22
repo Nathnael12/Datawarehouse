@@ -4,7 +4,6 @@ from datetime import datetime
 from datetime import timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from symbol import return_stmt
 
 cwd=os.getcwd()
 sys.path.append(f'../scripts/')

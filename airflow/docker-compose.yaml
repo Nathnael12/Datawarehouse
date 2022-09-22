@@ -48,8 +48,8 @@ x-airflow-common:
   # build: .
   environment:
     &airflow-common-env
-    # AIRFLOW__CORE__EXECUTOR: CeleryExecutor
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    # AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     # For backward compatibility, with Airflow <2.3
     AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
@@ -60,6 +60,7 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth'
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
+    depends_on: "postgres-dbt"
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
@@ -68,6 +69,7 @@ x-airflow-common:
     - ../scripts:/opt/scripts
     - ../data:/opt/data
     - ../temp_storage:/opt/temp_storage
+    - ../dbt:/opt/dbt
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -89,7 +91,6 @@ services:
       retries: 5
     restart: always
 
-  
   airflow-webserver:
     <<: *airflow-common
     command: webserver

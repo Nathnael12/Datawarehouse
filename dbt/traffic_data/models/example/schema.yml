@@ -7,6 +7,9 @@ models:
     
   - name: vehicles_summary
     description: "A summary of vehicles by distance and speed"
+  
+  - name: fast_vehicles_summary
+    description: "A summary of vehicles by distance and speed"
 
 
 
