@@ -9,6 +9,7 @@ from airflow.operators.bash_operator import BashOperator
 # We're hardcoding this value here for the purpose of the demo, but in a production environment this
 # would probably come from a config file and/or environment variables!
 DBT_PROJECT_DIR = "../../opt/dbt/traffic_data"
+DBT_PROFILE_DIR = "../../opt/dbt/"
 
 default_args = {
     'owner': 'airflow',
@@ -31,19 +32,20 @@ with DAG(
     
     dbt_run = BashOperator(
         task_id="dbt_run",
-        # bash_command="cd ../../opt/dbt/traffic_data && dbt run",
-        bash_command=f"dbt run --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}",
+        bash_command=f"dbt run --project-dir {DBT_PROJECT_DIR} --profiles-dir .. ",
     )
 
     dbt_test = BashOperator(
         task_id="dbt_test",
-        bash_command=f"dbt test --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}",
+        bash_command=f"dbt test --project-dir {DBT_PROJECT_DIR} --profiles-dir ..",
     )
 
     dbt_doc_generate = BashOperator(
         task_id="dbt_doc_gen", 
-        bash_command="dbt docs generate --profiles-dir /opt/airflow/dbt --project-dir "
-                      "/opt/airflow/dbt"
+        bash_command=f"dbt docs generate --project-dir {DBT_PROJECT_DIR} --profiles-dir .. ",
+
+        # bash_command="dbt docs generate --profiles-dir /opt/airflow/dbt --project-dir "
+        #               "/opt/airflow/dbt"
     )
 
 dbt_run >> dbt_test >> dbt_doc_generate

@@ -44,8 +44,8 @@ x-airflow-common:
   # In order to add custom dependencies or upgrade provider packages you can use your extended image.
   # Comment the image line, place your Dockerfile in the directory where you placed the docker-compose.yaml
   # and uncomment the "build" line below, Then run `docker-compose build` to build the images.
-  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.4.0}
-  # build: .
+  # image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.4.0}
+  build: .
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
@@ -70,6 +70,7 @@ x-airflow-common:
     - ../data:/opt/data
     - ../temp_storage:/opt/temp_storage
     - ../dbt:/opt/dbt
+
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -143,6 +144,7 @@ services:
     command:
       - -c
       - |
+        
         function ver() {
           printf "%04d%04d%04d%04d" $${1//./ }
         }
