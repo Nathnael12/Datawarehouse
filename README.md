@@ -27,8 +27,8 @@ ___
   cd DataEngineering_Datawarehouse_airflow
   pip install -r requirements.txt
   cd airflow
-  docker-compose up airflow-init
-  docker-compose up
+  docker-compose build
+  docker-compose up -d
 
 #   after this you can find airflow webserver at localhost:8080
 #  you can either manually trig tasks or you can turn dags on to start scheduled tasks
@@ -43,11 +43,13 @@ Two Dags
 Acyclic Graph representation
 ![App Screenshot](./screenshots/Directed%20Asyclic%20Graph.jpg)
 
+Dbt tasks with graph
+![App Screenshot](./screenshots/dbt-dags.jpg)
+
 DBT docs
 ![App Screenshot](./screenshots/docs.jpg)
 
-Simple lineage
-![App Screenshot](./screenshots/simple%20linage.jpg)
+
 
 
 ## Tech Stack
