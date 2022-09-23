@@ -2,6 +2,7 @@
 
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![Documentation](https://img.shields.io/badge/doc-generated%20by%20dbt%20docs-yellow)](https://data-engineering-dwh.netlify.app/#!/overview)
 # Data Engineering: Data warehouse tech stack with Postgres, DBT, and Airflow
 
 You and your colleagues have joined to create an AI startup that deploys sensors to businesses, collects data from all activities in a business - people’s interaction, traffic flows, smart appliances installed in a company. Your startup helps organizations obtain critical intelligence based on public and private data they collect and organize. 
