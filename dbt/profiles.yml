@@ -30,11 +30,11 @@ traffic_data:
     dev:
       type: postgres
       threads: 10
-      host: host.docker.internal
+      host: postgres
       port: 5432
-      user: postgres
-      pass: root
-      dbname: traffic_data
+      user: airflow
+      pass: airflow
+      dbname: airflow
       schema: public
 
     prod:

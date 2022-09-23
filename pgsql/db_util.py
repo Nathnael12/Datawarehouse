@@ -4,7 +4,7 @@ import json
 from sqlalchemy import create_engine
 import numpy as np
 
-engine = create_engine('postgresql+psycopg2://postgres:root@host.docker.internal/traffic_data')
+engine = create_engine('postgresql+psycopg2://airflow:airflow@postgres/airflow')
 
 VEHICLE_SCHEMA = "timed_vehicle_data_schema.sql"
 TRAJECTORIES_SCHEMA = "trajectory_schema.sql"
@@ -40,7 +40,7 @@ def insert_to_table(json_stream :str, table_name: str,from_file=False ):
 
             # TODO: This(the following line) shall be fixed when using cloud services
             # due to local memory (resource) shortage, I minimized the df to be loaded, 
-            df=df.loc[:np.floor(df.shape[0]/2),:] 
+            df=df.loc[:np.floor(df.shape[0]/3),:] 
             df.dropna(inplace=True)
         with engine.connect() as conn:
             df.to_sql(name=table_name, con=conn, if_exists='append', index=False)
