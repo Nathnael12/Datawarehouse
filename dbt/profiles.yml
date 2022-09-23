@@ -1,0 +1,50 @@
+traffic:
+  outputs:
+
+    dev:
+      type: postgres
+      threads: 10
+      host: 127.0.0.1
+      port: 5432
+      user: postgres
+      pass: root
+      dbname: traffic_data
+      schema: public
+
+    prod:
+      type: postgres
+      threads: 10
+      host: 127.0.0.1
+      port: 5432
+      user: postgres
+      pass: root
+      dbname: traffic_data
+      schema: public
+      
+  target: dev
+
+
+traffic_data:
+
+  outputs:
+    dev:
+      type: postgres
+      threads: 10
+      host: host.docker.internal
+      port: 5432
+      user: postgres
+      pass: root
+      dbname: traffic_data
+      schema: public
+
+    prod:
+      type: postgres
+      threads: 10
+      host: 127.0.0.1
+      port: 5432
+      user: postgres
+      pass: root
+      dbname: traffic_data
+      schema: public
+
+  target: dev
