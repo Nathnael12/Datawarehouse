@@ -30,11 +30,11 @@ traffic_data:
     dev:
       type: postgres
       threads: 10
-      host: postgres
-      port: 5432
+      host: 192.168.1.100
+      port: 8585
       user: airflow
       pass: airflow
-      dbname: airflow
+      dbname: postgres
       schema: public
 
     prod:

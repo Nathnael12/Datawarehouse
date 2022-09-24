@@ -41,8 +41,8 @@ def insert_to_table(json_stream :str, table_name: str,from_file=False ):
             df.columns=df.columns.str.replace(' ','')
 
             # TODO: This(the following line) shall be fixed when using cloud services
-            # due to local memory (resource) shortage, I minimized the df to be loaded, 
-            df=df.loc[:np.floor(df.shape[0]/10),:] 
+            # due to local memory (resource) shortage, I minimized the df to be loaded 
+            # df=df.loc[:np.floor(df.shape[0]/10),:] 
             df.dropna(inplace=True)
         with engine.connect() as conn:
             df.to_sql(name=table_name, con=conn, if_exists='append', index=False)
