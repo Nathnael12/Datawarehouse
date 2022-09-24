@@ -19,7 +19,7 @@ This project tried to implement the following core tasks
 - An ELT tool (dbt)
 ___
 
-## Deployment
+# Deployment
 
 > To deploy this project <br>`docker and docker-compose are required`
 
@@ -34,10 +34,38 @@ ___
 #   after this you can find airflow webserver at localhost:8080
 #  you can either manually trig tasks or you can turn dags on to start scheduled tasks
 ```
+## Redash Setup
+
+First cd to redash directory 
+```
+cd redash
+```
+## Create an environment file here
+`.env` Shoud contain the following
+```bash
+REDASH_HOST=http://localhost/redash
+PYTHONUNBUFFERED=0
+REDASH_LOG_LEVEL=INFO
+REDASH_REDIS_URL=redis://redis:6379/0
+POSTGRES_PASSWORD=password
+REDASH_COOKIE_SECRET=redash-selfhosted
+REDASH_SECRET_KEY=redash-selfhosted
+REDASH_DATABASE_URL={postgresql+psycopg2://username:password@host/dbname}
+```
+Then run 
+
+```bash
+docker-compose run --rm server create_db 
+docker-compose up -d
+
+# your redash dashboard should be running on port 5000
+```
+
 Please, find the deployed dbt warehouse documentation from [here](https://data-engineering-dwh.netlify.app/#!/overview)
 
 
-## Screenshots
+# Screenshots
+### Airflow & DBT
 Two Dags
 ![App Screenshot](./screenshots/DAGs.jpg)
 
@@ -50,23 +78,37 @@ Dbt tasks with graph
 DBT docs
 ![App Screenshot](./screenshots/docs.jpg)
 
+## redash Dashboard
+![App Screenshot](./screenshots/redash-board%20I.jpg)
+
+![App Screenshot](./screenshots/redash-board%20II.jpg)
+
+<br>
+
+# Tech Stacks
 
 
+<img height="80" src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png">
+<img height="80" src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png">
+<img height="80" src="https://static-00.iconduck.com/assets.00/airflow-icon-512x512-tpr318yf.png">
+<img height="80" src="https://seeklogo.com/images/D/dbt-logo-500AB0BAA7-seeklogo.com.png">
+<img height="80" src="https://avatars.githubusercontent.com/u/10746780?s=280&v=4">
 
-## Tech Stack
+<br>
 
+- postgreSql
+- Docker
 - Airflow
-- Postgres
 - DBT
 - Docker
 
 
-## Authors
+# Authors
 
 - [@Nathnael12](https://www.github.com/nathnael12)
 
 
-## Contributing
+# Contributing
 
 Contributions are always welcome!
 

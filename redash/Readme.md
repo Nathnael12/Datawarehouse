@@ -13,7 +13,7 @@ REDASH_DATABASE_URL={postgresql+psycopg2://username:password@host/dbname}
 ____
 Then run 
 
-```
+```bash
 docker-compose run --rm server create_db 
 docker-compose up -d
 # your redash should be running on port 5000
