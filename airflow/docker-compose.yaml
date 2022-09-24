@@ -84,6 +84,8 @@ services:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
+    ports:
+      - 192.168.1.100:8585:5432
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
     healthcheck:
@@ -91,6 +93,12 @@ services:
       interval: 5s
       retries: 5
     restart: always
+    # command: 
+    # - |
+    #     echo "host all  all    0.0.0.0/0  md5" >> /var/lib/postgresql/data/pg_hba.conf
+
+    #     # And add ``listen_addresses`` to ``/var/lib/postgresql/data/postgresql.conf``
+    #     echo "listen_addresses='*'" >> /var/lib/postgresql/data/postgresql.conf
 
   airflow-webserver:
     <<: *airflow-common

@@ -44,8 +44,6 @@ with DAG(
         task_id="dbt_doc_gen", 
         bash_command=f"dbt docs generate --project-dir {DBT_PROJECT_DIR} --profiles-dir .. ",
 
-        # bash_command="dbt docs generate --profiles-dir /opt/airflow/dbt --project-dir "
-        #               "/opt/airflow/dbt"
     )
 
 dbt_run >> dbt_test >> dbt_doc_generate
