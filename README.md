@@ -86,22 +86,13 @@ DBT docs
 <br>
 
 # Tech Stacks
-
-
-<img height="80" src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png">
-<img height="80" src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png">
-<img height="80" src="https://static-00.iconduck.com/assets.00/airflow-icon-512x512-tpr318yf.png">
-<img height="80" src="https://seeklogo.com/images/D/dbt-logo-500AB0BAA7-seeklogo.com.png">
-<img height="80" src="https://avatars.githubusercontent.com/u/10746780?s=280&v=4">
+|       |  | | | | | | |
+| ----------- | ----------- | -------- | ---------| -----------| -------| -----------| -------|
+| <img height="80" src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png">   |*postgreSQLs*| | <img height="80" src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png">   |*docker*| | <img height="80" src="https://avatars.githubusercontent.com/u/10746780?s=280&v=4">   |*redash*|
+| <img height="80" src="https://static-00.iconduck.com/assets.00/airflow-icon-512x512-tpr318yf.png">   |*airflow*| | <img height="80" src="https://seeklogo.com/images/D/dbt-logo-500AB0BAA7-seeklogo.com.png">   |*dbt*|
 
 <br>
-
-- postgreSql
-- Docker
-- Airflow
-- DBT
-- Docker
-
+<br>
 
 # Authors
 
