@@ -85,7 +85,8 @@ services:
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
     ports:
-      - 192.168.1.100:8585:5432
+      # - 192.168.1.100:8585:5432
+      - 8585:5432
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
     healthcheck:
