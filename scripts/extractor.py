@@ -110,3 +110,5 @@ class DataExtractor():
                 self.logger.error(f"Failed to extract data: {e}")
             except:
                 pass
+    def separate_data(self,file_name:str,chunk_size:int = 100):
+        pass
