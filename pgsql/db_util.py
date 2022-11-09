@@ -5,7 +5,8 @@ import json
 from sqlalchemy import create_engine
 import numpy as np
 
-engine = create_engine('postgresql+psycopg2://airflow:airflow@192.168.1.100:8585/postgres')
+# engine = create_engine('postgresql+psycopg2://airflow:airflow@192.168.1.100:8585/postgres')
+engine = create_engine('postgresql+psycopg2://airflow:airflow@host.docker.internal:8585/postgres')
 
 VEHICLE_SCHEMA = "timed_vehicle_data_schema.sql"
 TRAJECTORIES_SCHEMA = "trajectory_schema.sql"

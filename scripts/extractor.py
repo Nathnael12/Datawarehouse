@@ -89,7 +89,7 @@ class DataExtractor():
     def extract_data(self,file_name:str,return_json=False)->pd.DataFrame:
         try:
             # set the day and time as unique identifier
-            id_prefix= f"{file_name.split('.')[0]}_{datetime.now()}"
+            id_prefix= f"{file_name.split('.')[0]}"
             columns,all_data=self.get_columns_and_rows(file_path=file_name)
             trajectory_data, timed_vehicle_data=self.prepare_data_for_pandas(columns=columns,all_data=all_data,id_prefix=id_prefix)
             if not return_json:
@@ -110,3 +110,5 @@ class DataExtractor():
                 self.logger.error(f"Failed to extract data: {e}")
             except:
                 pass
+    def separate_data(self,file_name:str,chunk_size:int = 100):
+        pass
