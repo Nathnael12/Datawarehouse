@@ -47,8 +47,7 @@ default_args = {
     'email': ['natnaelmasresha@gmail.com'],
     'email_on_failure': False,
     'email_on_retry': False,
-    'retries': 0,
-    'retry_delay': timedelta(minutes=5)
+    'retries': 0
 }
 
 with DAG(
