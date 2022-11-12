@@ -49,7 +49,7 @@ def insert_to_table(json_stream :str, table_name: str,from_file=False ):
             df.to_sql(name=table_name, con=conn, if_exists='append', index=False)
 
     except Exception as e:
-        print(f"error insert to table: {e}")  
+        print(f"error while inserting to table: {e}")  
         sys.exit(e)
 
 
